@@ -3,37 +3,74 @@
     <title>Qr Code generator</title>
     <!-- to fetch the css when working with flask use {{ url_for('static', filename='main.css') }} as the href -->
     <link type="text/css" rel="stylesheet"  href="{{ url_for('static', filename='main.css') }}" />
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+
 
 </head>
 <html>
-    <div class="main">
-        <form method="POST">
-            <input name="text">
-            <div>
-                <input type="color" name="bgcolor" id="background" name="background"
-                       value="#e66465">
-                <label for="background">background Color</label>
+    <body>
+        <div class="main">
+            <div class="toolbar">
+                <div class="three-dots">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <h1>
+                    Colorful QR code Generator
+                </h1>
+                <div>
+
+                </div>
+                <!-- <div class="mode-switch">
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                      </label>
+                </div> -->
             </div>
-            
-            <div>
-                <input type="color" name="qrcolor" id="qrCode" name="qrCode"
-                        value="#f6b73c">
-                <label for="qrCode">Qr Code Color</label>
-            </div><br>
-            <button type="submit"></button>
-        </form>
-       
-        <div class="toolbar">
-
+            <form method="POST" class="mainContents" onsubmit="return validateForm()">
+                <div class="top">
+                    <label for="text">text input</label><br>
+                    <input name="text" class="text-input" id="text-input">
+                </div>
+                
+                <div class="bottom">
+                <div class="right-selector">
+                    <label for="background">background Color</label><br>
+                    <div id="bgcolorhighlight" class="hide-color-selector"></div>
+                    <input type="color" name="bgcolor" id="background" name="background" value="#e66465">
+                   
+                    <div class="mode-switch">
+                        <label for="transparentbg">transparent</label><br>
+                         <label class="switch">
+                            <input id="bgswitch" type="checkbox" name="transparentbg" onclick="validate(0);">
+                            <span class="slider round"></span>
+                         </label>
+                    </div>
+                </div>
+                
+                <div class="left-selector">
+                    <label for="qrCode">Qr Code Color</label><br>
+                    <div id="qrcolorhighlight" class="hide-color-selector"></div>
+                    <input type="color" name="qrcolor" id="qrCode" name="qrCode" value="#f6b73c">
+                    <div class="mode-switch">
+                        <label for="transparentbg">transparent</label><br>
+                         <label class="switch">
+                            <input id="qrswitch" type="checkbox" name="transparentqr" onclick="validate(1);">
+                            <span class="slider round"></span>
+                         </label>
+                    </div>
+                </div>
+                </div>
+              
+                <button type="submit">Create Qr code</button>
+            </form>
         </div>
-        <div class="mainContents">
-
+        <div class="footer">
+            <span>Leon Kipkoech</span>
+            <span>2020©</span>
         </div>
-        <div class="generatedQrCode">
-
-        </div>
-    </div>
-    <div class="footer">
-
-    </div>
+    </body>
+   
 </html>
