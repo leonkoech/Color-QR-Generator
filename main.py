@@ -1,3 +1,4 @@
+from datetime import time
 from flask import *
 from PIL import ImageColor
 import os
@@ -8,7 +9,7 @@ from PIL import Image
 app = Flask(__name__)
 
 
-def backgroundColor(bgcr,bgcg,bgcb ):
+def backgroundColor(bgcr,bgcg,bgcb,bgtransparent ):
     image=Image.open('unprocessed.png')
     # transform image to RGBA
     image = image.convert('RGBA')
@@ -20,14 +21,17 @@ def backgroundColor(bgcr,bgcg,bgcb ):
         if item[:3] == (255,255,255):
             # enter the new color here
             # choose whether transparent or other ccolors
-            newImage.append((bgcr,bgcg,bgcb))
+            if(bgtransparent=="checked"):
+                newImage.append((255,255,255,0))
+            else:
+                newImage.append((bgcr,bgcg,bgcb))
         
         else:
             newImage.append(item)
     image.putdata(newImage)
     image.save('unprocessed.png')
 
-def codeColor(cqrr,cprg, cprb):
+def codeColor(cqrr,cprg, cprb,qrtransparent):
     image=Image.open('unprocessed.png')
     # transform image to RGBA
     image = image.convert('RGBA')
@@ -39,7 +43,10 @@ def codeColor(cqrr,cprg, cprb):
         if item[:3] == (0,0,0):
             # enter the new color here
             # choose whether transparent or other colors
-            newImage.append((cqrr,cprg, cprb))
+            if(qrtransparent=="checked"):
+                newImage.append((255,255,255,0))
+            else:
+                newImage.append((cqrr,cprg, cprb))
         
         else:
             newImage.append(item)
@@ -49,13 +56,13 @@ def codeColor(cqrr,cprg, cprb):
     # delete the unprocessed image
     os.remove('unprocessed.png')
 
-def mainfun(inputtext,bgcr,bgcg,bgcb, cqrr,cprg, cprb):
+def mainfun(inputtext,bgcr,bgcg,bgcb,bgtransparent, cqrr,cprg, cprb,qrtransparent):
     img = qrcode.make(inputtext)
     type(img)  
     img.save("unprocessed.png")
     # if bgr=255 and bgg==255 and bgb
-    backgroundColor(bgcr,bgcg,bgcb)
-    codeColor(cqrr,cprg, cprb)
+    backgroundColor(bgcr,bgcg,bgcb,bgtransparent)
+    codeColor(cqrr,cprg, cprb,qrtransparent)
 
 def reversetuple(str):
     
@@ -74,15 +81,20 @@ def main_post():
     text = request.form['text']
     bgcolor = ImageColor.getcolor(request.form['bgcolor'], "RGB")
     qrcolor = ImageColor.getcolor(request.form['qrcolor'], "RGB")
+    transparentbg = request.form.get('transparentbg')
+    transparentqr =  request.form.get('transparentqr')
+    # transparentbg = "checked"
+    # transparentqr =  "unchecked"
     # processed_text = text.upper()
- 
+    print(transparentbg)
+    print(transparentqr)
     if request.method == 'POST':
     # do stuff when the form is submitted
 
     # redirect to end the POST handling
     # the redirect can be to the same route or somewhere else
        
-        return redirect(url_for('fetch',input=text,bgcolor=str(bgcolor),qrcolor=str(qrcolor)))
+        return redirect(url_for('fetch',input=text,bgcolor=str(bgcolor),qrcolor=str(qrcolor),transparentbg=str(transparentbg),transparentqr=str(transparentqr)))
 
     # show the form, it wasn't submitted
     # return render_template('cool_form.html')
@@ -93,21 +105,37 @@ def main_post():
 
 @app.route('/processed')
 # @app.route('/processed/<input><bgcolor>')
-def fetch(input=None,bgcolor=None,qrcolor=None):
+def fetch(input=None,bgcolor=None,qrcolor=None,transparentbg=None,transparentqr=None):
     # url_for('processed.html',input=input,bgcolor=str(bgcolor),qrcolor=str(qrcolor))
    
     input = request.args.get('input', '')
    
     bgcolor = reversetuple( request.args.get('bgcolor',''))
     qrcolor = reversetuple( request.args.get('qrcolor',''))
- 
+
+    bgtransparent = request.args.get('transparentbg','')
+    qrtransparent = request.args.get('transparentqr','')
+   
     bgcr = int(bgcolor[0])
     bgcg = int(bgcolor[1])
     bgcb = int(bgcolor[2])
     cqrr = int(qrcolor[0])
     cprg = int(qrcolor[1])
     cprb = int(qrcolor[2])
-    mainfun(input,bgcr,bgcg,bgcb, cqrr,cprg, cprb)
+    # if(bgtransparent=='checked'):
+    #     bgt=True
+        
+    # elif(bgtransparent=='unchecked'):
+    #     bgt=False
+        
+    # if(qrtransparent =='checked'):
+    #     qrt = True
+        
+    # elif(qrtransparent =='unchecked'):
+    #     qrt=False
+        
+    # time.sleep(2)
+    mainfun(input,bgcr,bgcg,bgcb,bgtransparent, cqrr,cprg, cprb,qrtransparent)
   
     
     # full_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'shovon.jpg')

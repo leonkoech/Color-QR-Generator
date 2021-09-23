@@ -15,9 +15,13 @@ function validate(val) {
        
         if (element.checked) {
             highlight.style.display = "block";
+            element.value= "checked";
+            console.log(element.value)
         }
         else {
             highlight.style.display = "none";
+            element.value= "unchecked";
+            console.log(element.value)
         }
     }
     else{
@@ -26,14 +30,15 @@ function validate(val) {
        
         if (element.checked) {
             highlight.style.display = "block";
+            element.value= "checked";
+            console.log(element.value)
         }
         else {
             highlight.style.display = "none";
+            element.value= "unchecked";
+            console.log(element.value)
+
         }
     }
-   
-}
-function switcher(){
-    console.log('qr switch')
    
 }

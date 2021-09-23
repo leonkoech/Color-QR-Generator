@@ -16,8 +16,9 @@ html,body{
 .toolbar{
     padding: 8px;
     height: 4vh;
-    border-bottom: 2px solid #d9dab2;
-    display:flex;
+    background-color: #d9dab2;
+    color: #191b1e;
+    display: flex;
     justify-content: space-between;
 
 }
@@ -39,7 +40,7 @@ html,body{
     width:2vh;
     margin-top: 1vh;
     margin-bottom: 1vh;
-    background-color: #d9dab2;
+    background-color: #191b1e;
     border-radius: 50%;
 }
 /* The switch - the box around the slider */
