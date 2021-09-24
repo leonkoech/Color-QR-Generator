@@ -83,25 +83,16 @@ def main_post():
     qrcolor = ImageColor.getcolor(request.form['qrcolor'], "RGB")
     transparentbg = request.form.get('transparentbg')
     transparentqr =  request.form.get('transparentqr')
-    # transparentbg = "checked"
-    # transparentqr =  "unchecked"
-    # processed_text = text.upper()
     print(transparentbg)
     print(transparentqr)
     if request.method == 'POST':
-    # do stuff when the form is submitted
-
-    # redirect to end the POST handling
-    # the redirect can be to the same route or somewhere else
+  
        
         return redirect(url_for('fetch',input=text,bgcolor=str(bgcolor),qrcolor=str(qrcolor),transparentbg=str(transparentbg),transparentqr=str(transparentqr)))
 
-    # show the form, it wasn't submitted
-    # return render_template('cool_form.html')
     return render_template('main')
 
-    # return render_template('processed.html',input=text,bgcolor=str(bgcolor),qrcolor=str(qrcolor))
-    # return redirect(url_for('/processed',input=text,bgcolor=str(bgcolor),qrcolor=str(qrcolor)))
+   
 
 @app.route('/processed')
 # @app.route('/processed/<input><bgcolor>')
@@ -122,22 +113,6 @@ def fetch(input=None,bgcolor=None,qrcolor=None,transparentbg=None,transparentqr=
     cqrr = int(qrcolor[0])
     cprg = int(qrcolor[1])
     cprb = int(qrcolor[2])
-    # if(bgtransparent=='checked'):
-    #     bgt=True
-        
-    # elif(bgtransparent=='unchecked'):
-    #     bgt=False
-        
-    # if(qrtransparent =='checked'):
-    #     qrt = True
-        
-    # elif(qrtransparent =='unchecked'):
-    #     qrt=False
-        
-    # time.sleep(2)
-    mainfun(input,bgcr,bgcg,bgcb,bgtransparent, cqrr,cprg, cprb,qrtransparent)
   
-    
-    # full_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'shovon.jpg')
-
+    mainfun(input,bgcr,bgcg,bgcb,bgtransparent, cqrr,cprg, cprb,qrtransparent)
     return render_template('processed.html')

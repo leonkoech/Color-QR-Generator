@@ -205,3 +205,63 @@ button:hover{
     z-index: 1;
     display: none;
 }
+.center-stuff{
+    width: 100%;
+    display: flex;
+    height: 90%;
+    justify-content: space-around;
+    text-align: center;
+    flex-direction: column;
+}
+.center-stuff img {
+    margin-left: 50%;
+    height: 40vh;
+    width: 40vh;
+    transform: translateX(-50%);
+}
+
+@media only screen and (max-width: 767px) {
+.three-dots{
+    width: 14vw;
+}    
+.switch {
+    margin-top: 1vh;
+    position: relative;
+    display: inline-block;
+    width: 14vw;
+    height: 3.82vh;
+}
+input#background {
+    height: 30vh;
+    width: 30vw;
+    margin-top: 2vh;
+    color: transparent;
+    border: transparent;
+    background-color: transparent;
+}
+input#qrCode {
+    height: 30vh;
+    width: 30vw;
+    margin-top: 2vh;
+    color: transparent;
+    border: transparent;
+    background-color: transparent;
+}
+input:checked + .slider:before {
+    -webkit-transform: translateX(7vw);
+    -ms-transform: translateX(7vw);
+    transform: translateX(7vw);
+  }
+  input.text-input {
+    
+    font-size: 4.8vw;
+}
+.center-stuff {
+    width: 100%;
+    display: flex;
+    height: 90%;
+    justify-content: space-around;
+    text-align: center;
+    flex-direction: column;
+}
+}

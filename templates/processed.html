@@ -1,12 +1,43 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Qr Code generator</title>
+        <!-- to fetch the css when working with flask use {{ url_for('static', filename='main.css') }} as the href -->
+        <link type="text/css" rel="stylesheet"  href="{{ url_for('static', filename='main.css') }}" />
+        <script src="{{ url_for('static', filename='main.js') }}"></script>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
 
     </head>
     <body>
-        <div>
-            <img src="{{  url_for('static', filename='processed.png') }}" alt="User Image">
+        <div class="main">
+            <div class="toolbar">
+                <div class="three-dots">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <h1>
+                    Colorful QR code Generator
+                </h1>
+                <div>
+
+                </div>
+               
+            </div>
+            <div class="center-stuff">
+                <img src="{{  url_for('static', filename='processed.png') }}" alt="User Image">
+                <button class="download-btn">
+                    Download Qr Code
+                </button>
+
+            </div>
+           
+        </div>
+        <div class="footer">
+            <span>Leon Kipkoech</span>
+            <span>2020©</span>
         </div>
     </body>
+  
 </html>
 
