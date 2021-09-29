@@ -5,11 +5,14 @@
     <link type="text/css" rel="stylesheet"  href="{{ url_for('static', filename='main.css') }}" />
     <script src="{{ url_for('static', filename='main.js') }}"></script>
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-
-
+    <style>
+        @font-face{
+            font-family: KenyanCoffee;
+            src: url("{{ url_for('static',filename='kenyanCoffee.ttf') }}") ;
+        }
+        </style>
 </head>
-<html>
-    <body>
+<body style=" font-family: KenyanCoffee;">
         <div class="main">
             <div class="toolbar">
                 <div class="three-dots">
@@ -65,7 +68,7 @@
                 </div>
                 </div>
               
-                <button type="submit">Create Qr code</button>
+                <button type="submit"  style=" font-family: KenyanCoffee; letter-spacing: 1px;">Create Qr code</button>
             </form>
         </div>
         <div class="footer">

@@ -1,9 +1,14 @@
+
+
 html,body{
     background: #191b1e;
     color: #d9dab2;
     margin: 0;
     padding: 0;
+    letter-spacing: 1px;
+    /* font-family: KenyanCoffee; */
 }
+
 .main{
     width: 90vw;
     height: 79vh;
@@ -19,6 +24,7 @@ html,body{
     background-color: #d9dab2;
     color: #191b1e;
     display: flex;
+    margin-left: -1px;
     justify-content: space-between;
 
 }
@@ -220,6 +226,7 @@ button:hover{
     transform: translateX(-50%);
 }
 
+
 @media only screen and (max-width: 767px) {
 .three-dots{
     width: 14vw;
@@ -264,4 +271,9 @@ input:checked + .slider:before {
     text-align: center;
     flex-direction: column;
 }
+}
+
+.center-stuff a button{
+    margin-left: 0%;
+    transform: translateX(0%);
 }

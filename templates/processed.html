@@ -6,9 +6,14 @@
         <link type="text/css" rel="stylesheet"  href="{{ url_for('static', filename='main.css') }}" />
         <script src="{{ url_for('static', filename='main.js') }}"></script>
         <meta content="width=device-width, initial-scale=1" name="viewport" />
-
+        <style>
+            @font-face{
+                font-family: KenyanCoffee;
+                src: url("{{ url_for('static',filename='kenyanCoffee.ttf') }}") ;
+            }
+            </style>
     </head>
-    <body>
+    <body style=" font-family: KenyanCoffee;">
         <div class="main">
             <div class="toolbar">
                 <div class="three-dots">
@@ -26,9 +31,12 @@
             </div>
             <div class="center-stuff">
                 <img src="{{  url_for('static', filename='processed.png') }}" alt="User Image">
-                <button class="download-btn">
+                <a href="{{  url_for('static', filename='processed.png') }}" download="colorQrCode">
+                  <button class="download-btn"  style=" font-family: KenyanCoffee; letter-spacing: 1px;">
                     Download Qr Code
                 </button>
+                </a>
+              
 
             </div>
            
